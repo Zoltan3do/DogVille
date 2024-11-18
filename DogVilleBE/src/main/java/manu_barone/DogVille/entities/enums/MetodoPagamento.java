@@ -1,6 +1,5 @@
 package manu_barone.DogVille.entities.enums;
 
-public enum Ruolo {
-    USER,
-    ADMIN
+public enum MetodoPagamento {
+    STRIPE
 }
