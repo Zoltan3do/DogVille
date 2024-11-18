@@ -43,15 +43,15 @@ public class Utente implements UserDetails {
     private String address;
 
 
-    @OneToMany(mappedBy = "userAdoptions")
+    @OneToMany(mappedBy = "userAdoptions",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Adozione> adozioni;
 
-    @OneToMany(mappedBy = "userOrders")
+    @OneToMany(mappedBy = "userOrders",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Ordine> ordini;
 
-    @OneToMany(mappedBy = "userPayments")
+    @OneToMany(mappedBy = "userPayments",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Pagamento> pagamenti;
 

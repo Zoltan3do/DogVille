@@ -30,7 +30,7 @@ public class Servizio {
     private LocalDate insertionDate;
     private LocalDate lastUpdate;
 
-    @OneToMany(mappedBy = "service")
+    @OneToMany(mappedBy = "service" ,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<OggettoOrdine> productItems;
 

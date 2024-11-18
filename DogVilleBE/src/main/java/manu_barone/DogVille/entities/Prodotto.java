@@ -37,7 +37,7 @@ public class Prodotto {
     private LocalDate insertionDate;
     private LocalDate lastUpdate;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<OggettoOrdine> productItems;
 
