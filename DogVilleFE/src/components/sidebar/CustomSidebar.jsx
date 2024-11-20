@@ -108,7 +108,7 @@ function CustomSidebar() {
           {openMenu === 'cure' && (
             <>
               <NavItem className="text-start mx-5">
-                <NavText>Vaccini avanzati</NavText>
+                <NavText className="">Vaccini avanzati</NavText>
               </NavItem>
               <NavItem className="text-start mx-5">
                 <NavText>Trattamento antipulci</NavText>
@@ -131,10 +131,15 @@ function CustomSidebar() {
         </SideNav.Nav>
       </div>
 
-      <div className="py-5">
-        <NavItem eventKey="likes">
+      <div className="pb-10 pt-5 border-solid border-white border-t-2 mt-5">
+        <NavItem eventKey="likes" className="mx-5">
           <NavIcon>
-            <i className="fa fa-regular fa-heart" style={{ fontSize: 18 }}></i>
+            <i className="fa fa-regular fa-heart" style={{ fontSize: 20 }}></i>
+          </NavIcon>
+        </NavItem>
+        <NavItem eventKey="shop" className="mx-5 mt-5">
+          <NavIcon>
+            <i className="fa fa-solid fa-bag-shopping" style={{ fontSize: 20 }}></i>
           </NavIcon>
         </NavItem>
       </div>
