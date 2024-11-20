@@ -6,8 +6,8 @@ function HomepageCustom() {
         <div className="flex flex-col h-screen">
             <CustomNavbar />
 
-            <div className="flex flex-grow">
-                <div className="flex-shrink-0">
+            <div className="flex flex-grow ">
+                <div className="flex-shrink-0 ">
                     <CustomSidebar />
                 </div>
             </div>

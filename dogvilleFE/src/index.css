@@ -9,7 +9,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #111C20;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,7 +18,7 @@
 }
 
 .freccetta{
-  animation: freccettaMove 1s infinite
+  animation: freccettaMove 1.5s infinite
 }
 
 @keyframes freccettaMove {
@@ -26,7 +26,7 @@
     transform: translateY(0); 
   }
   50% {
-    transform: translateX(10px); 
+    transform: translateX(8px); 
   }
   100% {
     transform: translateX(0); 
