@@ -1,27 +1,52 @@
-function CustomNavbar() {
-    return (
+import { useSelector } from "react-redux";
 
-        <>
-            <nav className="bg-transparent ml-1 ">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
-                    <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-                            <p>Adotta un amico &nbsp;<i className="fa fa-solid fa-arrow-right-long align-middle freccetta"></i></p>
+function CustomNavbar() {
+    const toggleState = useSelector((state) => state.sidebarToggle.value);
+
+    return (
+        <nav
+            className={`bg-transparent ${toggleState ? "ml-72" : "ml-24"} transition-all duration-300 fixed top-0 left-0 w-full z-50`}
+        >
+            {!toggleState && (
+                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Testo "Adotta un amico" */}
+                    <div className="hidden sm:block md:w-auto">
+                        <p className="text-lg font-medium">
+                            Adotta un amico &nbsp;
+                            <i className="fa fa-solid fa-arrow-right-long align-middle freccetta"></i>
+                        </p>
                     </div>
-                    <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src="src/assets/dogvilleLogo-removebg.png" className="w-32" alt="dogville Logo" />
+
+                    {/* Logo */}
+                    <a href="#" className="items-center w-full sm:w-auto justify-center sm:justify-start hidden sm:flex">
+                        <img
+                            src="src/assets/dogvilleLogo-removebg.png"
+                            className="w-32"
+                            alt="dogville Logo"
+                        />
                     </a>
 
-                    <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-                        <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-transparent">
-                            <a href=""><i className="fa-solid fa-phone align-bottom"></i></a> {/* INSERIRE IL NUMERO DI TELEFONO PRESO DALLA FETCH */}
-                            <p>Login</p>
-                            <p>Sign In</p>
+                    {/* Links */}
+                    <div className="hidden w-full sm:block sm:w-auto overflow-x-auto mr-28">
+                        <ul className="flex flex-col font-medium p-4 sm:p-0 mt-4 bg-gray-50 sm:flex-row md:space-x-8 sm:mt-0 bg-transparent gap-x-3 sm:flex-nowrap">
+                            <li className="flex items-center">
+                                <a href="">
+                                    <i className="fa-solid fa-phone align-middle"></i>
+                                </a>
+                            </li>
+                            <li className="flex items-center">
+                                <p>Accedi</p>
+                            </li>
+                            <li className="flex items-center">
+                                <p>Registrati</p>
+                            </li>
                         </ul>
                     </div>
                 </div>
-            </nav>
-        </>
-    )
+            )}
+        </nav>
+    );
 }
 
 export default CustomNavbar;
+
