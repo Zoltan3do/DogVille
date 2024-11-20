@@ -1,18 +1,16 @@
-
-
 #sidenav::-webkit-scrollbar {
-  width: 2px; /* Impostare la larghezza della scrollbar */
+  width: 2px;
 }
 
 #sidenav::-webkit-scrollbar-thumb {
-  background-color: #888; /* Colore della "maniglia" della scrollbar */
+  background-color: #888;
   border-radius: 10px;
 }
 
 #sidenav::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Colore della maniglia quando è in hover */
+  background-color: #555; 
 }
 
 #sidenav::-webkit-scrollbar-track {
-  background-color: #222; /* Colore della traccia della scrollbar */
+  background-color: #222;
 }

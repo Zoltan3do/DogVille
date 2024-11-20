@@ -29,7 +29,6 @@ function CustomSidebar() {
         color: '#fff',
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
         width: isExpanded ? '250px' : '70px',
         transition: 'all 0.3s ease',
         overflowY: 'auto',

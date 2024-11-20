@@ -1,16 +1,18 @@
 import { useSelector } from "react-redux";
+import "./navbar.css";
 
 function CustomNavbar() {
     const toggleState = useSelector((state) => state.sidebarToggle.value);
 
     return (
         <nav
-            className={`bg-transparent ${toggleState ? "ml-72" : "ml-24"} transition-all duration-300 fixed top-0 left-0 w-full z-50`}
+            className={`${toggleState ? "ml-72" : "ml-24"} transition-all duration-300 fixed top-0 left-0 w-full z-50 mt-10 sm:mt-0`}
+            id="navbara"
         >
             {!toggleState && (
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Testo "Adotta un amico" */}
-                    <div className="hidden sm:block md:w-auto">
+                    <div className="sm:block md:w-auto">
                         <p className="text-lg font-medium">
                             Adotta un amico &nbsp;
                             <i className="fa fa-solid fa-arrow-right-long align-middle freccetta"></i>
