@@ -41,7 +41,7 @@ public class Utente implements UserDetails {
     private LocalDate registrationDate;
     private String profileImage;
     private String address;
-
+    private String telephoneNumber;
 
     @OneToMany(mappedBy = "userAdoptions",cascade = CascadeType.REMOVE)
     @JsonIgnore
@@ -70,7 +70,7 @@ public class Utente implements UserDetails {
     private List<ProfiloPsicologico> usersPsycologicalProfiles = new ArrayList<>();
 
 
-    public Utente(String name, String surname, String email, String password, String indirizzo) {
+    public Utente(String name, String surname, String email, String password, String indirizzo,String telephoneNumber) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -79,6 +79,31 @@ public class Utente implements UserDetails {
         this.registrationDate = LocalDate.now();
         this.profileImage = "https://ui-avatars.com/api/?name=" + name + "+" + surname;
         this.address = indirizzo;
+        this.telephoneNumber =telephoneNumber;
+    }
+
+    public List<Adozione> getAdozioni() {
+        return adozioni;
+    }
+
+    public List<Ordine> getOrdini() {
+        return ordini;
+    }
+
+    public List<Pagamento> getPagamenti() {
+        return pagamenti;
+    }
+
+    public List<Cane> getLikes() {
+        return likes;
+    }
+
+    public List<ProfiloPsicologico> getUsersPsycologicalProfiles() {
+        return usersPsycologicalProfiles;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
     public String getAddress() {

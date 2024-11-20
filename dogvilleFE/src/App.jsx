@@ -1,12 +1,12 @@
-import CustomSidebar from './components/sidebar/CustomSidebar'
-
 import './App.css'
+
+import HomepageCustom from './components/homepage/HomepageCustom'
 
 function App() {
 
   return (
     <>
-     <CustomSidebar></CustomSidebar>
+     <HomepageCustom></HomepageCustom>
     </>
   )
 }

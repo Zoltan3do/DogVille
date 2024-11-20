@@ -21,6 +21,8 @@ public record UtenteDTO(
         String password,
         @NotEmpty(message = "L'indirizzo è obbligatorio!")
         @Size(min = 4, message = "L'indirizzo deve avere almeno 4 caratteri!")
-        String address
+        String address,
+        @NotEmpty
+        String telephoneNumber
 ) {
 }
