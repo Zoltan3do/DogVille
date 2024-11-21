@@ -14,3 +14,8 @@
 #sidenav::-webkit-scrollbar-track {
   background-color: #222;
 }
+
+
+.cursor-pointer:hover{
+  cursor:pointer
+}

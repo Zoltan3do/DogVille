@@ -3,6 +3,8 @@ import SideNav, { Toggle, NavItem, NavIcon, NavText } from '@trendmicro/react-si
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSidebarState } from '../../redux/sidebarSlice';
+import { changeModalState } from "../../redux/loginToggleSlice";
+import "./sidebar.css"
 
 function CustomSidebar() {
   const [openMenu, setOpenMenu] = useState(null);
@@ -24,7 +26,7 @@ function CustomSidebar() {
   return (
     <SideNav
       style={{
-        position:"fixed",
+        position: "fixed",
         backgroundColor: '#000',
         color: '#fff',
         display: 'flex',
@@ -49,7 +51,7 @@ function CustomSidebar() {
       />
 
       <Toggle />
-      <div style={{ flex: 1 }} className="mt-5">
+      <div style={{ flex: 1 }} className="mt-5 mb-5">
         <SideNav.Nav defaultSelected="home">
           <NavItem eventKey="home">
             <NavIcon>
@@ -138,30 +140,31 @@ function CustomSidebar() {
         </SideNav.Nav>
       </div>
 
+      <hr />
       {/* Sezione inferiore per Login, Sign In e Contattaci */}
-      <div className="pb-10 pt-5 border-solid border-white border-t-2 mt-5">
-        <NavItem eventKey="likes" className="mx-5 text-center">
-          <NavIcon>
-            <i className="fa fa-regular fa-heart" style={{ fontSize: 20 }}></i>
-          </NavIcon>
-        </NavItem>
-        <NavItem eventKey="shop" className="mx-5 mt-5 text-center">
-          <NavIcon>
-            <i className="fa fa-solid fa-bag-shopping" style={{ fontSize: 20 }}></i>
-          </NavIcon>
-        </NavItem>
-        <NavItem eventKey="login" className={`text-center mx-2 mt-5 text-xs  ${!toggleState?"sm:hidden":""} block`}>
-          <NavText>Accedi</NavText>
-        </NavItem>
-        <NavItem eventKey="signin" className={`text-center mx-2 mt-5 text-xs  ${!toggleState?"sm:hidden":""} block`}>
-          <NavText>Registrati</NavText>
-        </NavItem>
-        <NavItem eventKey="contact" className={`text-center mx-2 mt-5 text-xs  ${!toggleState?"sm:hidden":""} block`}>
-          <NavIcon>
-          <i className="fa-solid fa-phone align-bottom" style={{ fontSize: 20 }}></i>
-          </NavIcon>
-          
-        </NavItem>
+      <div className="pt-10 pb-5 text-reddino " >
+        <div data-event-key="likes" className={` text-sm ${!toggleState ? "text-center" : ""} flex items-center p-3 pl-6 w-full sideElement cursor-pointer hover:text-white`}>
+          <i className="fa fa-regular fa-heart mr-4" style={{ fontSize: 15 }}></i>
+          <p className={`${!toggleState ? "hidden" : ""}`}>Preferiti</p>
+        </div>
+        <div data-event-key="shop" className={`mt-3 text-sm ${!toggleState ? "text-center" : ""} flex items-center p-3 pl-6 w-full sideElement cursor-pointer hover:text-white`}>
+          <i className="fa fa-solid fa-bag-shopping mr-4" style={{ fontSize: 15 }}></i>
+          <p className={`${!toggleState ? "hidden" : ""}`}>Shop</p>
+        </div>
+        <div onClick={() => dispatch(changeModalState(true))} data-event-key="login" className={`mt-3 text-sm  ${!toggleState ? "sm:hidden text-center" : ""} flex items-center p-3 pl-6 w-full sideElement cursor-pointer hover:text-white`}>
+          <i className='fa fa-solid fa-right-to-bracket mr-4' style={{ fontSize: 15 }}></i>
+          <p className={`${!toggleState ? "hidden" : ""}`}>Accedi</p>
+        </div>
+        <div data-event-key="register" className={`mt-3 text-sm  ${!toggleState ? "sm:hidden text-center" : ""} flex items-center p-3 pl-6 w-full sideElement cursor-pointer hover:text-white`}>
+          <i className='fa fa-solid fa-address-card mr-4' style={{ fontSize: 15 }}></i>
+          <p className={`${!toggleState ? "hidden" : ""}`}>Registrati</p>
+        </div>
+        <a href="tel:+393517416230">
+          <div data-event-key="callme" className={`mt-3 text-sm  ${!toggleState ? "sm:hidden text-center" : ""} flex items-center p-3 pl-6 w-full sideElement cursor-pointer hover:text-white`}>
+            <i className="fa-solid fa-phone mr-4" style={{ fontSize: 15 }}></i>
+            <p className={`${!toggleState ? "hidden" : ""}`}>Chiamaci</p>
+          </div>
+        </a>
       </div>
     </SideNav>
   );
