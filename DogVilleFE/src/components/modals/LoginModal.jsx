@@ -11,15 +11,26 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { changeModalState } from "../../redux/loginToggleSlice";
 import "./login.css"
+import { executeLoginFetch } from "../../redux/loginFetchSlice";
+import { useState } from "react";
 
 function LoginModal() {
 
     const dispatch = useDispatch();
     const open = useSelector((state) => state.loginModalToggle.value);
+    // const loginState = useSelector((state) => state.loginFetch.value);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleOpen = () => {
         dispatch(changeModalState(!open));
     };
+
+    const handleLogin = () => {
+        dispatch(executeLoginFetch(email, password))
+        handleOpen();
+    };
+
     return (
         <>
             <Dialog
@@ -34,26 +45,27 @@ function LoginModal() {
                             Accedi
                         </Typography>
                         <Typography
-                            className="mb-3 font-normal"
+                            className="mb-3 font-normal text-primary-color"
                             variant="paragraph"
-                            color="#111C20"
                         >
                             Inserisci le tue Email e Password per accedere.
                         </Typography>
                         <Typography className="-mb-2 text-primary-color" variant="h6" >
                             La tua e-mail
                         </Typography>
-                        <Input placeholder="Email" size="lg" />
-                        <Typography className="-mb-2 text-primary-color" variant="h6">
+                        <Input placeholder="Email" size="lg" value={email}
+                                    onChange={(e) => setEmail(e.target.value)} type="email"/>
+                        <Typography className="-mb-2 text-primary-color" variant="h6" required>
                             La tua password
                         </Typography>
-                        <Input placeholder="Password" size="lg" />
+                        <Input placeholder="Password" size="lg" value={password}
+                                    onChange={(e) => setPassword(e.target.value)} type="password" required/>
                         <div className="-ml-2.5 -mt-3">
                             <Checkbox label="Ricordami" className="text-primary-color focus:ring-0 focus:outline-none border-primary-color border-1 focus:border-1" />
                         </div>
                     </CardBody>
                     <CardFooter className="pt-0">
-                        <Button variant="gradient" onClick={handleOpen} fullWidth className="bg-primary-color ">
+                        <Button variant="gradient" onClick={handleLogin} fullWidth className="bg-primary-color " >
                             Accedi
                         </Button>
                         <Typography variant="small" className="mt-4 flex justify-center">
@@ -62,7 +74,6 @@ function LoginModal() {
                                 as="a"
                                 href="#signup"
                                 variant="small"
-                                color="#111C20"
                                 className="ml-1 font-bold text-primary-color"
                                 onClick={handleOpen}
                             >
