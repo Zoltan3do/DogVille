@@ -9,7 +9,7 @@ function CustomNavbar() {
 
     return (
         <nav
-            className={`${toggleState ? "ml-60" : "ml-24"} transition-all duration-300 fixed top-0 left-0 w-full z-50 mt-10 sm:mt-0`}
+            className={`${toggleState ? "!pl-64 " : "!pl-24"} transition-all duration-300 fixed top-0 left-0 w-full z-50 mt-10 sm:mt-0`}
             id="navbara"
         >
             {toggleState && (

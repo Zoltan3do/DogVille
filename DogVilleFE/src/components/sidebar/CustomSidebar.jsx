@@ -31,7 +31,7 @@ function CustomSidebar() {
         color: '#fff',
         display: 'flex',
         flexDirection: 'column',
-        width: isExpanded ? '250px' : '70px',
+        width: isExpanded ? '250px' : '50px',
         transition: 'all 0.3s ease',
         overflowY: 'auto',
         overflowX: 'hidden',
@@ -140,7 +140,7 @@ function CustomSidebar() {
         </SideNav.Nav>
       </div>
 
-      <hr />
+      <hr className={toggleState?`block`:'hidden'}/>
       {/* Sezione inferiore per Login, Sign In e Contattaci */}
       <div className="pt-10 pb-5 text-reddino " >
         <div data-event-key="likes" className={` text-sm ${!toggleState ? "text-center" : ""} flex items-center p-3 pl-6 w-full sideElement cursor-pointer hover:text-white`}>

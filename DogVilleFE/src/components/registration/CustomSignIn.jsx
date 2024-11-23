@@ -32,8 +32,8 @@ function CustomSignIn() {
 
     const toggleState = useSelector((state) => state.sidebarToggle.value);
     return (
-        <div className={`bg-transparent ${toggleState ? "ml-72" : "ml-24"} transition-all duration-300 flex-grow p-4 sm:relative lg:flex flex-row-reverse pr-0 mt-5`}>
-            <img src="src/assets/pastoreTedesco.png" alt="pt" className="lg:block  lg:w-2/4"/>
+        <div className={`bg-transparent ${toggleState ? "pl-72" : "pl-24"} transition-all duration-300 flex-grow p-4 sm:relative lg:flex flex-row-reverse mt-5`}>
+            <img src="src/assets/pastoreTedesco.png" alt="pt" className="md:block hidden  lg:w-2/4" />
             <Card color="transparent" shadow={false} className="">
                 <Typography variant="h4" color="white">
                     Registrati
@@ -148,8 +148,8 @@ function CustomSignIn() {
                     </Typography>
                 </form>
             </Card>
-             
 
+            <img src="src/assets/pastoreTedesco.png" alt="pt2" className="block md:hidden lg:w-2/4" />
         </div>
 
     )

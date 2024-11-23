@@ -9,6 +9,7 @@ import CustomNavbar from './components/navbar/CustomNavbar'
 import CustomSidebar from './components/sidebar/CustomSidebar'
 import LoginModal from "./components/modals/LoginModal.jsx";
 import CustomSignIn from './components/registration/CustomSignIn.jsx'
+import CustomFooter from './components/footer/CustomFooter.jsx'
 
 function App() {
 
@@ -37,6 +38,9 @@ function App() {
             </Route>
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
+          <div>
+            <CustomFooter></CustomFooter>
+          </div>
 
         </BrowserRouter>
 

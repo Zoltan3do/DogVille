@@ -21,11 +21,11 @@ public class UtenteController {
     }
 
 // DA FINIRE
-//    @PutMapping("/me")
-//    public Utente updateProfile(@AuthenticationPrincipal Utente currentUtente, @RequestBody @Validated UtenteDTO body) {
-//
-//        return utenteService.updateUser(currentUtente.getId(), body);
-//    }
+    @PutMapping("/me")
+    public Utente updateProfile(@AuthenticationPrincipal Utente currentUtente, @RequestBody @Validated UtenteDTO body) {
+
+        return utenteService.updateUser(currentUtente.getId(), body);
+    }
 
 
 }
