@@ -147,7 +147,7 @@ function CustomSignIn() {
                     </Typography>
                 </form>
             </Card>
-            <img src="src/assets/pastoreTedescoRemoved.png" alt="pt" className="lg:block lg:w-full"/>
+            <img src="src/assets/pastoreTedesco.png" alt="pt" className="lg:block lg:w-50"/>
 
         </div>
 
