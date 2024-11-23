@@ -13,6 +13,7 @@ import { changeModalState } from "../../redux/loginToggleSlice";
 import "./login.css"
 import { executeLoginFetch } from "../../redux/loginFetchSlice";
 import { useState } from "react";
+import '../registration/registration.css'
 
 function LoginModal() {
 
@@ -28,7 +29,13 @@ function LoginModal() {
 
     const handleLogin = () => {
         dispatch(executeLoginFetch(email, password))
+        resetFields();
         handleOpen();
+    };
+
+    const resetFields = () => {
+        setEmail('');
+        setPassword('');
     };
 
     return (
@@ -54,12 +61,12 @@ function LoginModal() {
                             La tua e-mail
                         </Typography>
                         <Input placeholder="Email" size="lg" value={email}
-                                    onChange={(e) => setEmail(e.target.value)} type="email"/>
-                        <Typography className="-mb-2 text-primary-color" variant="h6" required>
+                                    onChange={(e) => setEmail(e.target.value)} type="email" className="noBlu"/>
+                        <Typography className="-mb-2 text-primary-color noBlu" variant="h6" required>
                             La tua password
                         </Typography>
                         <Input placeholder="Password" size="lg" value={password}
-                                    onChange={(e) => setPassword(e.target.value)} type="password" required/>
+                                    onChange={(e) => setPassword(e.target.value)} type="password" required className="noBlu"/>
                         <div className="-ml-2.5 -mt-3">
                             <Checkbox label="Ricordami" className="text-primary-color focus:ring-0 focus:outline-none border-primary-color border-1 focus:border-1" />
                         </div>

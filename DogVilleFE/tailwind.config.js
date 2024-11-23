@@ -9,7 +9,8 @@ export default {
       colors:{
         'primary-color': ' #111C20',
         'whiteino':'#E0E2E2',
-        'reddino':'#AF9A9B'
+        'reddino':'#AF9A9B',
+        'grigino':'#262626'
       }
     },
   },

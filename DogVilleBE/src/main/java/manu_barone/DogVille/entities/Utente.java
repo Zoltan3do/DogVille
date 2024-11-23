@@ -70,7 +70,7 @@ public class Utente implements UserDetails {
     private List<ProfiloPsicologico> usersPsycologicalProfiles = new ArrayList<>();
 
 
-    public Utente(String name, String surname, String email, String password, String indirizzo,String telephoneNumber) {
+    public Utente(String name, String surname, String email, String password, String address,String telephoneNumber) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -78,7 +78,7 @@ public class Utente implements UserDetails {
         this.role = Ruolo.USER;
         this.registrationDate = LocalDate.now();
         this.profileImage = "https://ui-avatars.com/api/?name=" + name + "+" + surname;
-        this.address = indirizzo;
+        this.address = address;
         this.telephoneNumber =telephoneNumber;
     }
 

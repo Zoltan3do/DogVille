@@ -36,7 +36,7 @@ public class UtenteService {
                 }
         );
 
-        Utente newUser = new Utente(body.nome(), body.cognome(), body.email(), bcrypt.encode(body.password()), body.address(), body.telephoneNumber());
+        Utente newUser = new Utente(body.name(), body.surname(), body.email(), bcrypt.encode(body.password()), body.address(), body.telephoneNumber());
 
         Utente savedUser = this.userRepository.save(newUser);
 

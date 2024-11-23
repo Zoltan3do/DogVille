@@ -7,7 +7,7 @@ export default configureStore({
     reducer: {
         sidebarToggle: sidebarReducer,
         loginModalToggle: loginToggleReducer,
-        loginFetch: loginFetchReducer,
+        loginFetches: loginFetchReducer,
     }
 })
 

@@ -5,6 +5,10 @@ import store from "./redux/store"
 import HomepageCustom from './components/homepage/HomepageCustom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFoundPage from './components/NotFoundPage'
+import CustomNavbar from './components/navbar/CustomNavbar'
+import CustomSidebar from './components/sidebar/CustomSidebar'
+import LoginModal from "./components/modals/LoginModal.jsx";
+import CustomSignIn from './components/registration/CustomSignIn.jsx'
 
 function App() {
 
@@ -12,17 +16,32 @@ function App() {
     <>
       <Provider store={store}>
         <BrowserRouter>
+          <div className="flex flex-col mb-32">
+            <CustomNavbar />
+          </div>
+
+          {/* Sidebar e Contenuto */}
+          <div className="flex flex-grow">
+            <div className="flex-shrink-0">
+              <CustomSidebar />
+            </div>
+          </div>
           <Routes>
             <Route path="/" element={
               <HomepageCustom></HomepageCustom>
             }>
             </Route>
+            <Route path="/register" element={
+              <CustomSignIn></CustomSignIn>
+            }>
+            </Route>
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
+
         </BrowserRouter>
 
-
-      </Provider>
+        <LoginModal />
+      </Provider >
 
     </>
   )
