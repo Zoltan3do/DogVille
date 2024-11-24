@@ -32,7 +32,13 @@ public record CaneDTO(
 
         boolean weaned,
 
-        boolean adopted
+        boolean adopted,
+
+        @Pattern(regexp = "\\b(yes|no)\\b")
+        String adoptedCheck,
+
+        @Pattern(regexp = "\\b(yes|no)\\b")
+        String weanedCheck
 
 ) {
 }

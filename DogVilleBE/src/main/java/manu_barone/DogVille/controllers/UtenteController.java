@@ -25,7 +25,6 @@ public class UtenteController {
         return currentUtente;
     }
 
-    // DA TESTARE
     @PutMapping("/me")
     public Utente updateProfile(@AuthenticationPrincipal Utente currentUtente, @RequestBody @Validated UtenteDTO body, BindingResult validationResult) {
         if (validationResult.hasErrors()) {

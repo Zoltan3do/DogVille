@@ -72,10 +72,10 @@ public class CaneService {
         if (body.healthState() != null) cane.setHealthState(body.healthState());
         if (body.gender() != null) cane.setGender(body.gender().charAt(0));
         if (body.description() != null) cane.setDescription(body.description());
-        cane.setWeaned(body.weaned());
-        cane.setAdopted(body.adopted());
-        cane.setWeanedCheck(cane.getWeaned() ? "yes" : "no");
-        cane.setAdoptedCheck(cane.getAdopted() ? "yes" : "no");
+        if(body.weanedCheck() != null) cane.setWeanedCheck(body.weanedCheck());
+        if(body.adoptedCheck() != null) cane.setAdoptedCheck(body.adoptedCheck());
+        cane.setWeaned(cane.getWeanedCheck().equalsIgnoreCase("yes"));
+        cane.setAdopted(cane.getAdoptedCheck().equalsIgnoreCase("yes"));
         return caneRepo.save(cane);
     }
 

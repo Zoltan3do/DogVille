@@ -46,22 +46,24 @@ public class UtenteService {
     }
 
 
-
-    public Utente updateUtente(UUID id, UtenteDTO body){
+    public Utente updateUtente(UUID id, UtenteDTO body) {
         Utente utente = this.findById(id);
-        utente.setName(body.name());
-        utente.setSurname(body.surname());
-        utente.setEmail(body.email());
-        utente.setAddress(body.address());
-        utente.setTelephoneNumber(body.telephoneNumber());
+
+        if (body.name() != null) utente.setName(body.name());
+        if (body.surname() != null) utente.setSurname(body.surname());
+        if (body.email() != null) utente.setEmail(body.email());
+        if (body.password() != null) utente.setPassword(body.password());
+        if (body.address() != null) utente.setAddress(body.address());
+        if (body.telephoneNumber() != null) utente.setTelephoneNumber(body.telephoneNumber());
         if (body.password() != null && !body.password().isEmpty()) {
             utente.setPassword(bcrypt.encode(body.password()));
         }
+
         return userRepository.save(utente);
     }
 
 
-    public void deleteUtente(UUID id){
+    public void deleteUtente(UUID id) {
         Utente utente = this.findById(id);
         userRepository.delete(utente);
     }
