@@ -30,9 +30,9 @@ public record CaneDTO(
         @Size(max = 255, message = "La descrizione del cane non può superare i 255 caratteri.")
         String description,
 
-        Boolean isWeaned,
+        boolean weaned,
 
-        Boolean isAdopted
+        boolean adopted
 
 ) {
 }

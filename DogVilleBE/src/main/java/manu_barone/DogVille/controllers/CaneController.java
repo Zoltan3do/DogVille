@@ -28,21 +28,21 @@ public class CaneController {
     @Autowired
     private CaneService cs;
 
-    @GetMapping
+    @GetMapping("/filter")
     public Page<Cane> getCani(@RequestParam(defaultValue = "0") int page,
                               @RequestParam(defaultValue = "10") int size,
                               @RequestParam(defaultValue = "id") String sortBy,
                               @RequestParam(required = false) Integer age,
-                              @RequestParam(required = false) Boolean isWeaned,
+                              @RequestParam(required = false) String weanedCheck,
                               @RequestParam(required = false) String race,
                               @RequestParam(required = false) String healthState,
                               @RequestParam(required = false) Character gender,
                               @RequestParam(required = false) String dogSize,
-                              @RequestParam(required = false) Boolean isAdopted
+                              @RequestParam(required = false) String adoptedCheck
 
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        return cs.findWithFilters(isAdopted,age, isWeaned, race, healthState, gender, dogSize, pageable);
+        return cs.findWithFilters(adoptedCheck, age, weanedCheck, race, healthState, gender, dogSize, pageable);
     }
 
     @PostMapping

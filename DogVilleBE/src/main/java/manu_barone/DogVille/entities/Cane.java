@@ -33,7 +33,7 @@ public class Cane {
     private Taglia dogSize;
 
     private String race;
-    private boolean isAdopted;
+    private boolean adopted;
 
     @Enumerated(EnumType.STRING)
     private StatoSalute healthState;
@@ -41,9 +41,14 @@ public class Cane {
     private char gender;
     private int likeCount;
     private String description;
-    private boolean isWeaned;
+
+    private boolean weaned;
+
     private LocalDate insertionDate;
     private String profileImage;
+
+    private String adoptedCheck;
+    private String weanedCheck;
 
     @ManyToMany(mappedBy = "likes" ,cascade = CascadeType.REMOVE)
     @JsonIgnore
@@ -57,7 +62,7 @@ public class Cane {
     )
     private List<ProfiloPsicologico> dogsPsycologicalProfiles = new ArrayList<>();
 
-    public Cane(String name, int age, Taglia size, String race, StatoSalute healthState, char gender, String description, boolean isWeaned) {
+    public Cane(String name, int age, Taglia size, String race, StatoSalute healthState, char gender, String description, boolean weaned) {
         this.name = name;
         this.age = age;
         this.dogSize = size;
@@ -65,10 +70,33 @@ public class Cane {
         this.healthState = healthState;
         this.gender = gender;
         this.description = description;
-        this.isWeaned = isWeaned;
+        this.weaned = weaned;
         this.likeCount = 0;
         this.insertionDate = LocalDate.now();
         this.profileImage = "https://ui-avatars.com/api/?name=" + name;
+        this.adopted = false;
+        this.weanedCheck = this.weaned?"yes":"no";
+        this.adoptedCheck = "no";
+    }
+
+    public String getAdoptedCheck() {
+        return adoptedCheck;
+    }
+
+    public String getWeanedCheck() {
+        return weanedCheck;
+    }
+
+    public Boolean getAdopted() {
+        return adopted;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public Boolean getWeaned() {
+        return weaned;
     }
 
     public Taglia getDogSize() {
@@ -119,8 +147,8 @@ public class Cane {
         return description;
     }
 
-    public boolean isWeaned() {
-        return isWeaned;
+    public boolean weaned() {
+        return weaned;
     }
 
     public LocalDate getInsertionDate() {
@@ -131,7 +159,7 @@ public class Cane {
         return profileImage;
     }
 
-    public boolean isAdopted() {
-        return isAdopted;
+    public boolean adopted() {
+        return adopted;
     }
 }

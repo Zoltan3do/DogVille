@@ -30,7 +30,7 @@ public class ProfiloPsicologicoService {
                 .orElseThrow(() -> new RuntimeException("ProfiloPsicologico non trovato con ID: " + id));
     }
 
-    @Transactional
+
     public void saveAllProfilesWithCompatibility(List<CompatibilitaProfiliDTO> profilesData) {
         HashMap<String, ProfiloPsicologico> profileMap = new HashMap<>();
 
@@ -48,8 +48,6 @@ public class ProfiloPsicologicoService {
             }
         }
 
-        profiloPsicologicoRepository.saveAll(profileMap.values());
-
         for (CompatibilitaProfiliDTO data : profilesData) {
             ProfiloPsicologico ownerProfile = profileMap.get(data.ownerPersonality());
 
@@ -58,8 +56,10 @@ public class ProfiloPsicologicoService {
                     ProfiloPsicologico compatibleProfile = profileMap.get(compatiblePersonality);
 
                     if (compatibleProfile != null) {
-                        ownerProfile.getCompatibleProfiles().add(compatibleProfile);
-                        compatibleProfile.setParentProfile(ownerProfile);
+                        if (!ownerProfile.getCompatibleProfiles().contains(compatibleProfile)) {
+                            ownerProfile.getCompatibleProfiles().add(compatibleProfile);
+                            compatibleProfile.setParentProfile(ownerProfile);
+                        }
                     }
                 }
             }
@@ -67,6 +67,7 @@ public class ProfiloPsicologicoService {
 
         profiloPsicologicoRepository.saveAll(profileMap.values());
     }
+
 
     public ProfiloPsicologicoDTO toDTO(ProfiloPsicologico profiloPsicologico) {
         return new ProfiloPsicologicoDTO(
