@@ -51,7 +51,7 @@ public class Utente implements UserDetails {
     @JsonIgnore
     private List<Ordine> ordini;
 
-    @OneToMany(mappedBy = "userPayments",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "userPayments", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Pagamento> pagamenti;
 

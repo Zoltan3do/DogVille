@@ -39,13 +39,13 @@ public class Cane {
     private StatoSalute healthState;
 
     private char gender;
-    private int like_count;
+    private int likeCount;
     private String description;
     private boolean isWeaned;
     private LocalDate insertionDate;
     private String profileImage;
 
-    @ManyToMany(mappedBy = "likes")
+    @ManyToMany(mappedBy = "likes" ,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Utente> likes;
 
@@ -66,7 +66,7 @@ public class Cane {
         this.gender = gender;
         this.description = description;
         this.isWeaned = isWeaned;
-        this.like_count = 0;
+        this.likeCount = 0;
         this.insertionDate = LocalDate.now();
         this.profileImage = "https://ui-avatars.com/api/?name=" + name;
     }
@@ -112,7 +112,7 @@ public class Cane {
     }
 
     public int getLike_count() {
-        return like_count;
+        return likeCount;
     }
 
     public String getDescription() {

@@ -28,7 +28,7 @@ public class LikeService {
 
         if (!currentUtente.getLikes().contains(dog)) {
             currentUtente.getLikes().add(dog);
-            dog.setLike_count(dog.getLike_count() + 1);
+            dog.setLikeCount(dog.getLike_count() + 1);
             ur.save(currentUtente);
             cr.save(dog);
         }
@@ -43,7 +43,7 @@ public class LikeService {
         if (currentUtente.getLikes().contains(dog)) {
             currentUtente.getLikes().remove(dog);
             dog.getLikes().remove(currentUtente);
-            dog.setLike_count(dog.getLike_count() - 1);
+            dog.setLikeCount(dog.getLike_count() - 1);
             ur.save(currentUtente);
             cr.save(dog);
         } else {
@@ -51,5 +51,6 @@ public class LikeService {
         }
 
     }
+
 }
 
