@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/cani")
 public class CaneController {
+
     @Autowired
     private CaneService cs;
 
@@ -32,10 +33,12 @@ public class CaneController {
                               @RequestParam(required = false) String race,
                               @RequestParam(required = false) String healthState,
                               @RequestParam(required = false) Character gender,
-                              @RequestParam(required = false) String taglia
+                              @RequestParam(required = false) String dogSize,
+                              @RequestParam(required = false) Boolean isAdopted
+
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        return cs.findWithFilters(age, isWeaned, race, healthState, gender, taglia, pageable);
+        return cs.findWithFilters(isAdopted,age, isWeaned, race, healthState, gender, dogSize, pageable);
     }
 
     @PostMapping
@@ -52,6 +55,8 @@ public class CaneController {
     public Cane findCaneById(@PathVariable UUID caneId) {
         return cs.findById(caneId);
     }
+
+
 
 
 

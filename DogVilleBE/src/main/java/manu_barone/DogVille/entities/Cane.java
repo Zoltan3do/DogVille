@@ -30,10 +30,10 @@ public class Cane {
     private int age;
 
     @Enumerated(EnumType.STRING)
-    private Taglia size;
+    private Taglia dogSize;
 
     private String race;
-    private boolean IsAdopted;
+    private boolean isAdopted;
 
     @Enumerated(EnumType.STRING)
     private StatoSalute healthState;
@@ -41,7 +41,7 @@ public class Cane {
     private char gender;
     private int like_count;
     private String description;
-    private boolean IsWeaned;
+    private boolean isWeaned;
     private LocalDate insertionDate;
     private String profileImage;
 
@@ -60,15 +60,27 @@ public class Cane {
     public Cane(String name, int age, Taglia size, String race, StatoSalute healthState, char gender, String description, boolean isWeaned) {
         this.name = name;
         this.age = age;
-        this.size = size;
+        this.dogSize = size;
         this.race = race;
         this.healthState = healthState;
         this.gender = gender;
         this.description = description;
-        IsWeaned = isWeaned;
+        this.isWeaned = isWeaned;
         this.like_count = 0;
         this.insertionDate = LocalDate.now();
         this.profileImage = "https://ui-avatars.com/api/?name=" + name;
+    }
+
+    public Taglia getDogSize() {
+        return dogSize;
+    }
+
+    public List<Utente> getLikes() {
+        return likes;
+    }
+
+    public List<ProfiloPsicologico> getDogsPsycologicalProfiles() {
+        return dogsPsycologicalProfiles;
     }
 
     public UUID getId() {
@@ -83,8 +95,8 @@ public class Cane {
         return age;
     }
 
-    public Taglia getSize() {
-        return size;
+    public Taglia dogSize() {
+        return dogSize;
     }
 
     public String getRace() {
@@ -108,7 +120,7 @@ public class Cane {
     }
 
     public boolean isWeaned() {
-        return IsWeaned;
+        return isWeaned;
     }
 
     public LocalDate getInsertionDate() {
@@ -120,6 +132,6 @@ public class Cane {
     }
 
     public boolean isAdopted() {
-        return IsAdopted;
+        return isAdopted;
     }
 }

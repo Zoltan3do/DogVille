@@ -14,7 +14,7 @@ public record CaneDTO(
         int age,
 
         @NotNull(message = "La taglia del cane è obbligatoria.")
-        Taglia size,
+        Taglia dogSize,
 
         @NotBlank(message = "La razza del cane non può essere vuota.")
         @Size(max = 50, message = "La razza del cane non può superare i 50 caratteri.")
@@ -24,7 +24,7 @@ public record CaneDTO(
         StatoSalute healthState,
 
         @Pattern(regexp = "[MF]", message = "Il genere del cane deve essere 'M' (Maschio) o 'F' (Femmina).")
-        char gender,
+        String gender,
 
         @Size(max = 255, message = "La descrizione del cane non può superare i 255 caratteri.")
         String description,

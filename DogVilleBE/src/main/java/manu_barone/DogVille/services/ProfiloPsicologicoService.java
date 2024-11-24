@@ -68,13 +68,7 @@ public class ProfiloPsicologicoService {
         profiloPsicologicoRepository.saveAll(profileMap.values());
     }
 
-
     public ProfiloPsicologicoDTO toDTO(ProfiloPsicologico profiloPsicologico) {
-        System.out.println("Converting profile: " + profiloPsicologico.getType() +
-                " with compatible profiles: " + profiloPsicologico.getCompatibleProfiles().stream()
-                .map(ProfiloPsicologico::getType)
-                .toList());
-
         return new ProfiloPsicologicoDTO(
                 profiloPsicologico.getType(),
                 profiloPsicologico.getDescrizione(),
@@ -84,22 +78,10 @@ public class ProfiloPsicologicoService {
         );
     }
 
-
     public List<ProfiloPsicologicoDTO> getAllProfilesAsDTO() {
-
         List<ProfiloPsicologico> allProfiles = profiloPsicologicoRepository.findAll();
-
-        allProfiles.forEach(profile -> {
-            System.out.println("Profile: " + profile.getType() + " with compatible profiles: " +
-                    profile.getCompatibleProfiles().stream()
-                            .map(ProfiloPsicologico::getType)
-                            .toList());
-        });
-
         return allProfiles.stream()
                 .map(this::toDTO)
                 .toList();
     }
-
-
 }

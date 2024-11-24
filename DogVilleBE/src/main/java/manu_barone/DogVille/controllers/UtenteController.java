@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("utenti")
 public class UtenteController {
@@ -24,7 +25,7 @@ public class UtenteController {
         return currentUtente;
     }
 
-    // DA FINIRE
+    // DA TESTARE
     @PutMapping("/me")
     public Utente updateProfile(@AuthenticationPrincipal Utente currentUtente, @RequestBody @Validated UtenteDTO body, BindingResult validationResult) {
         if (validationResult.hasErrors()) {

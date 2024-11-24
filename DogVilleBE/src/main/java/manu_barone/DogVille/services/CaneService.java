@@ -18,33 +18,37 @@ public class CaneService {
     @Autowired
     private CaneRepo caneRepo;
 
-    public Page<Cane> findWithFilters(Integer age, Boolean isWeaned, String race, String healthState, Character gender, String size, Pageable pageable) {
-        Specification<Cane> specs = Specification.where(null);
+    public Page<Cane> findWithFilters(Boolean isAdopted,Integer age, Boolean isWeaned, String race, String healthState, Character gender, String dogSize, Pageable pageable) {
+        Specification<Cane> specs = Specification.where((root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("isAdopted"), false));
         if (age != null)
             specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("age"), age));
         if (isWeaned != null)
-            specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("isWeaning"), isWeaned));
+            specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("isWeaned"), isWeaned));
         if (race != null)
             specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("race"), race));
         if (healthState != null)
             specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("healthState"), healthState));
         if (gender != null)
             specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("gender"), gender));
-        if (size != null) {
-            specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("size"), size));
+        if (dogSize != null) {
+            specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("dogSize"), dogSize));
+        }
+        if (dogSize != null) {
+            specs = specs.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("isAdopted"), isAdopted));
         }
         return caneRepo.findAll(specs, pageable);
     }
 
     public Cane addCane(CaneDTO body) {
-        return new Cane(body.name(),
+        return caneRepo.save(new Cane(body.name(),
                 body.age(),
-                body.size(),
+                body.dogSize(),
                 body.race(),
                 body.healthState(),
-                body.gender(),
+                body.gender().charAt(0),
                 body.description(),
-                body.isWeaned());
+                body.isWeaned()));
     }
 
     public Cane findById(UUID id) {
