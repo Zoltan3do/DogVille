@@ -3,6 +3,7 @@ package manu_barone.DogVille.controllers;
 import manu_barone.DogVille.entities.Utente;
 import manu_barone.DogVille.exceptions.BadRequestException;
 import manu_barone.DogVille.payloads.UtenteDTO;
+import manu_barone.DogVille.payloads.validationGroups.Update;
 import manu_barone.DogVille.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,7 +27,7 @@ public class UtenteController {
     }
 
     @PutMapping("/me")
-    public Utente updateProfile(@AuthenticationPrincipal Utente currentUtente, @RequestBody @Validated UtenteDTO body, BindingResult validationResult) {
+    public Utente updateProfile(@AuthenticationPrincipal Utente currentUtente, @RequestBody @Validated(Update.class) UtenteDTO body, BindingResult validationResult) {
         if (validationResult.hasErrors()) {
             String message = validationResult.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).collect(Collectors.joining(". "));
             throw new BadRequestException("Ci sono stati errori nel payload! " + message);

@@ -5,6 +5,7 @@ import manu_barone.DogVille.exceptions.BadRequestException;
 import manu_barone.DogVille.payloads.LoginDTO;
 import manu_barone.DogVille.payloads.UtenteDTO;
 import manu_barone.DogVille.payloads.UtenteLoginResponseDTO;
+import manu_barone.DogVille.payloads.validationGroups.Create;
 import manu_barone.DogVille.services.SecurityService;
 import manu_barone.DogVille.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public Utente save(@RequestBody @Validated UtenteDTO body, BindingResult validationResult) {
+    public Utente save(@RequestBody @Validated(Create.class) UtenteDTO body, BindingResult validationResult) {
         if (validationResult.hasErrors()) {
             String message = validationResult.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).collect(Collectors.joining(". "));
             throw new BadRequestException("Ci sono stati errori nel payload! " + message);

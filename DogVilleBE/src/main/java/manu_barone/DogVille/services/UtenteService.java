@@ -52,7 +52,6 @@ public class UtenteService {
         if (body.name() != null) utente.setName(body.name());
         if (body.surname() != null) utente.setSurname(body.surname());
         if (body.email() != null) utente.setEmail(body.email());
-        if (body.password() != null) utente.setPassword(body.password());
         if (body.address() != null) utente.setAddress(body.address());
         if (body.telephoneNumber() != null) utente.setTelephoneNumber(body.telephoneNumber());
         if (body.password() != null && !body.password().isEmpty()) {
