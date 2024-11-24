@@ -24,7 +24,7 @@ import java.util.UUID;
 @ToString
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties({"password", "role", "enabled", "accountNonLocked", "credentialsNonExpired", "accountNonExpired", "authorities"})
+@JsonIgnoreProperties({"password", "enabled", "accountNonLocked", "credentialsNonExpired", "accountNonExpired", "authorities"})
 public class Utente implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

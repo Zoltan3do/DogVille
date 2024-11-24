@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import manu_barone.DogVille.entities.enums.StatoSalute;
+import manu_barone.DogVille.entities.enums.Taglia;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,8 +27,11 @@ public class Cane {
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String name;
-    private String age;
-    private String size;
+    private int age;
+
+    @Enumerated(EnumType.STRING)
+    private Taglia size;
+
     private String race;
     private boolean IsAdopted;
 
@@ -53,7 +57,7 @@ public class Cane {
     )
     private List<ProfiloPsicologico> dogsPsycologicalProfiles = new ArrayList<>();
 
-    public Cane(String name, String age, String size, String race, StatoSalute healthState, char gender, String description, boolean isWeaned) {
+    public Cane(String name, int age, Taglia size, String race, StatoSalute healthState, char gender, String description, boolean isWeaned) {
         this.name = name;
         this.age = age;
         this.size = size;
@@ -75,11 +79,11 @@ public class Cane {
         return name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public String getSize() {
+    public Taglia getSize() {
         return size;
     }
 

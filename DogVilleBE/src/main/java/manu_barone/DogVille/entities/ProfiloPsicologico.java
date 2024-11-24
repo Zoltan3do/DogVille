@@ -23,26 +23,59 @@ public class ProfiloPsicologico {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Setter(AccessLevel.NONE)
     private UUID id;
+
     private String type;
 
-    @ManyToMany(mappedBy = "dogsPsycologicalProfiles")
+    private String descrizione;  // Nuovo campo aggiunto per la descrizione
+
+    @ManyToMany(mappedBy = "dogsPsycologicalProfiles", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Cane> dogs = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "usersPsycologicalProfiles")
+    @ManyToMany(mappedBy = "usersPsycologicalProfiles", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Utente> users = new ArrayList<>();
 
+    @OneToMany(mappedBy = "parentProfile", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<ProfiloPsicologico> compatibleProfiles = new ArrayList<>();
 
-    public ProfiloPsicologico(String type) {
+    @ManyToOne
+    @JoinColumn(name = "parent_profile_id")
+    @JsonIgnore
+    private ProfiloPsicologico parentProfile;
+
+    public ProfiloPsicologico(String type, String descrizione) {
         this.type = type;
+        this.descrizione = descrizione;
     }
 
+    // Getter e Setter
     public UUID getId() {
         return id;
     }
 
     public String getType() {
         return type;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public List<Cane> getDogs() {
+        return dogs;
+    }
+
+    public List<Utente> getUsers() {
+        return users;
+    }
+
+    public List<ProfiloPsicologico> getCompatibleProfiles() {
+        return compatibleProfiles;
+    }
+
+    public ProfiloPsicologico getParentProfile() {
+        return parentProfile;
     }
 }

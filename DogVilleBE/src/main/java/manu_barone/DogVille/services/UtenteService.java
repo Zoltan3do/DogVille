@@ -24,10 +24,12 @@ public class UtenteService {
                 .orElseThrow(() -> new NotFoundException("Nessun utente trovato con ID: " + id));
     }
 
+
     public Utente findByEmail(String email) {
         return this.userRepository.findByEmail(email)
                 .orElseThrow(() -> new NotFoundException("Nessun utente registrato con questa email"));
     }
+
 
     public Utente save(UtenteDTO body) {
         this.userRepository.findByEmail(body.email()).ifPresent(
@@ -42,4 +44,27 @@ public class UtenteService {
 
         return savedUser;
     }
+
+
+
+    public Utente updateUtente(UUID id, UtenteDTO body){
+        Utente utente = this.findById(id);
+        utente.setName(body.name());
+        utente.setSurname(body.surname());
+        utente.setEmail(body.email());
+        utente.setAddress(body.address());
+        utente.setTelephoneNumber(body.telephoneNumber());
+        if (body.password() != null && !body.password().isEmpty()) {
+            utente.setPassword(bcrypt.encode(body.password()));
+        }
+        return userRepository.save(utente);
+    }
+
+
+    public void deleteUtente(UUID id){
+        Utente utente = this.findById(id);
+        userRepository.delete(utente);
+    }
+
+
 }

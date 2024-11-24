@@ -23,6 +23,7 @@ public record UtenteDTO(
         @Size(min = 4, message = "L'indirizzo deve avere almeno 4 caratteri!")
         String address,
         @NotEmpty
+        @Pattern(regexp = "^\\+39\\d{10}$")
         String telephoneNumber
 ) {
 }

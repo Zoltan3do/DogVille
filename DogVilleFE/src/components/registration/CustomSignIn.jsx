@@ -133,7 +133,7 @@ function CustomSignIn() {
                                 </a>
                             </Typography>
                         }
-                        containerProps={{ className: "-ml-2.5 checkbox-label" }}
+                        containerProps={{ className: "-ml-2.5 checkbox-label" }} required
 
 
                     />
