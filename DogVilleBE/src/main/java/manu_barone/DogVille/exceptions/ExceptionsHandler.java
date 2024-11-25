@@ -49,4 +49,5 @@ public class ExceptionsHandler {
         ex.printStackTrace();
         return new ErrorsRespDTO("Problema lato server", LocalDateTime.now());
     }
+
 }

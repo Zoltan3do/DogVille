@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import manu_barone.DogVille.entities.Utente;
 import manu_barone.DogVille.exceptions.UnauthorizedException;
 import manu_barone.DogVille.services.UtenteService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,21 +22,15 @@ import java.util.UUID;
 @Component
 public class JWTChecker extends OncePerRequestFilter {
 
-
-
     @Autowired
     private JWT jwt;
 
     @Autowired
     private UtenteService userService;
 
-    public JWTChecker(JWT jwt, UtenteService userService) {
-        this.jwt = jwt;
-        this.userService = userService;
-    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer "))
             throw new UnauthorizedException("Inserire token nell' Authorization Header nel formato corretto !");
@@ -51,8 +46,10 @@ public class JWTChecker extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         return new AntPathMatcher().match("/auth/**", request.getServletPath());
     }
+
 }

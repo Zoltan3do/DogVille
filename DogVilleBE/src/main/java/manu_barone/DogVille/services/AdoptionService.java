@@ -9,10 +9,13 @@ import manu_barone.DogVille.exceptions.NotFoundException;
 import manu_barone.DogVille.payloads.AdoptionDTO;
 import manu_barone.DogVille.repositories.AdozioneRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Service
@@ -26,6 +29,10 @@ public class AdoptionService {
 
     @Autowired
     private CaneService cs;
+
+    public Adozione findById(UUID id) {
+        return adozioneRepo.findById(id).orElseThrow(() -> new NotFoundException("Nessun adozione trovata"));
+    }
 
     public Page<Adozione> findAdoptionByUser(String userEmail, Pageable pageable) {
         Utente user = us.findByEmail(userEmail);
@@ -46,6 +53,27 @@ public class AdoptionService {
         Adozione adozione = adozioneRepo.findById(adoptionId)
                 .orElseThrow(() -> new NotFoundException("Richiesta di adozione non trovata con ID: " + adoptionId));
         return adozione.getState();
+    }
+
+    public Adozione updateAdoptionState(UUID adoptionId,  String newState) {
+        Adozione adoption = this.findById(adoptionId);
+
+        StatoAdozione stateEnum;
+        try {
+            stateEnum = StatoAdozione.valueOf(newState.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new BadRequestException("Stato non valido: " + newState + ". I valori accettati sono: "
+                    + Arrays.toString(StatoAdozione.values()));
+        }
+
+        adoption.setState(stateEnum);
+        adoption.setLastUpdate(LocalDate.now());
+        return adozioneRepo.save(adoption);
+    }
+
+    public void deleteCane(UUID id) {
+        Adozione adoption = this.findById(id);
+        adozioneRepo.delete(adoption);
     }
 
 
