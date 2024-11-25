@@ -21,12 +21,18 @@ import java.util.UUID;
 @Component
 public class JWTChecker extends OncePerRequestFilter {
 
+
+
     @Autowired
     private JWT jwt;
 
     @Autowired
     private UtenteService userService;
 
+    public JWTChecker(JWT jwt, UtenteService userService) {
+        this.jwt = jwt;
+        this.userService = userService;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

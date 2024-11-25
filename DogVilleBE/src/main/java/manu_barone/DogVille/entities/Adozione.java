@@ -16,6 +16,7 @@ import java.util.UUID;
 @Table(name = "adoptions")
 @ToString
 @Setter
+@NoArgsConstructor
 @JsonIgnoreProperties({"enabled", "accountNonLocked", "credentialsNonExpired", "accountNonExpired", "authorities"})
 public class Adozione {
     @Id
@@ -29,6 +30,7 @@ public class Adozione {
     private StatoAdozione state;
 
     private LocalDate creationDate;
+    private LocalDate lastUpdate;
 
     @OneToOne
     @JoinColumn(name = "dog_id")
@@ -38,11 +40,14 @@ public class Adozione {
     @JoinColumn(name="user_id")
     private Utente userAdoptions;
 
-
-    public Adozione() {
+    public Adozione(Cane dog, Utente user) {
         this.state = StatoAdozione.IN_ATTESA_DOCUMENTI;
         this.creationDate = LocalDate.now();
+        this.dog = dog;
+        this.userAdoptions = user;
     }
+
+
 
     public UUID getId() {
         return id;
@@ -62,5 +67,17 @@ public class Adozione {
 
     public LocalDate getCreationDate() {
         return creationDate;
+    }
+
+    public LocalDate getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public Cane getDog() {
+        return dog;
+    }
+
+    public Utente getUserAdoptions() {
+        return userAdoptions;
     }
 }
