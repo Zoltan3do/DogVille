@@ -34,5 +34,12 @@ public class ProfiloPsicologicoController {
         return ResponseEntity.ok(profile);
     }
 
+    @GetMapping("/byType/{type}")
+    public ResponseEntity<ProfiloPsicologicoDTO> getProfiloPsicologicoByType(@PathVariable String type){
+        ProfiloPsicologicoDTO profile = profiloPsicologicoService.toDTO(profiloPsicologicoService.getProfiloPsicologicoByType(type));
+        return ResponseEntity.ok(profile);
+    }
+
+
 
 }

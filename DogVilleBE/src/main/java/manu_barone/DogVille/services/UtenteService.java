@@ -1,6 +1,7 @@
 package manu_barone.DogVille.services;
 
 import manu_barone.DogVille.entities.Utente;
+import manu_barone.DogVille.entities.enums.Ruolo;
 import manu_barone.DogVille.exceptions.BadRequestException;
 import manu_barone.DogVille.exceptions.NotFoundException;
 import manu_barone.DogVille.payloads.UtenteDTO;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -40,9 +42,7 @@ public class UtenteService {
 
         Utente newUser = new Utente(body.name(), body.surname(), body.email(), bcrypt.encode(body.password()), body.address(), body.telephoneNumber());
 
-        Utente savedUser = this.userRepository.save(newUser);
-
-        return savedUser;
+        return this.userRepository.save(newUser);
     }
 
 
@@ -61,10 +61,20 @@ public class UtenteService {
         return userRepository.save(utente);
     }
 
+    public List<Utente> findAll(){
+        return userRepository.findAll();
+    }
+
 
     public void deleteUtente(UUID id) {
         Utente utente = this.findById(id);
         userRepository.delete(utente);
+    }
+
+    public Utente switchRole(UUID id) {
+        Utente utente = this.findById(id);
+        utente.setRole(utente.getRole() == Ruolo.USER ? Ruolo.ADMIN : Ruolo.USER);
+        return userRepository.save(utente);
     }
 
 

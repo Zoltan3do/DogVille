@@ -2,6 +2,7 @@ package manu_barone.DogVille.services;
 
 import jakarta.transaction.Transactional;
 import manu_barone.DogVille.entities.ProfiloPsicologico;
+import manu_barone.DogVille.exceptions.NotFoundException;
 import manu_barone.DogVille.payloads.CompatibilitaProfiliDTO;
 import manu_barone.DogVille.payloads.ProfiloPsicologicoDTO;
 import manu_barone.DogVille.repositories.ProfiloPsicologicoRepo;
@@ -28,6 +29,10 @@ public class ProfiloPsicologicoService {
     public ProfiloPsicologico getProfiloPsicologicoById(UUID id) {
         return profiloPsicologicoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("ProfiloPsicologico non trovato con ID: " + id));
+    }
+
+    public ProfiloPsicologico getProfiloPsicologicoByType(String type){
+        return profiloPsicologicoRepository.findByType(type).orElseThrow(()->new NotFoundException("Profilo "+ type+ " non trovato!"));
     }
 
 

@@ -35,6 +35,7 @@ export const executeLoginFetch = (param1, param2) => async () => {
     }
 };
 
+
 export const executeRegisterFetch = (param1, param2, param3, param4, param5, param6) => async () => {
     try {
         const url = "http://locahost:3001/auth/register";
@@ -51,8 +52,6 @@ export const executeRegisterFetch = (param1, param2, param3, param4, param5, par
             })
             throw new Error("Errore nella chiamata API");
         }
-        const data = await response.json();
-        localStorage.setItem("Access Token", data.accessToken);
         alert("Resitrazione avvenuta con successo!")
     } catch (error) {
         console.error("Errore durante la fetch:", error);
